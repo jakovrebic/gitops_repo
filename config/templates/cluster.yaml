@@ -1,0 +1,30 @@
+
+{{ .Values.clusters }}
+
+{{ .Files.Get "files/cluster-config/{{ .name }}.yaml" }}
+
+## Add Job that checks if cluster config sealed secret field values match cluster name and have valid fields
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+spec:
+  project: 
+  source:
+    repoURL: {{ .clusterConfigRepo }}
+    path: .
+    targetRevision: master
+  destination:
+    namespace: {{ $.Values.argo-cd-info.cluster-project }}
+    name: {{ .name }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: true
+
+{{ end }}
