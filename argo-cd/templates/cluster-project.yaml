@@ -1,0 +1,17 @@
+## TODO define cluster project ArgoCD CRD AppProject
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.cluster.projectName }}
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: {{ .Values.Cluster.projectName }}-ns
+    server: {{ .Values.cluster.serverUrl }}
+  orphanedResources:
+    warn: false
+  sourceRepos:
+  - '*'
