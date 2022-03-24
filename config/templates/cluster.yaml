@@ -11,13 +11,13 @@ kind: Application
 metadata:
   name: {{ .name }}
 spec:
-  project: 
+  project: {{ $.Values.argo-cd-info.cluster-project }}
   source:
     repoURL: {{ .clusterConfigRepo }}
     path: .
     targetRevision: master
   destination:
-    namespace: {{ $.Values.argo-cd-info.cluster-project }}
+    namespace: {{ $.Values.argo-cd-info.cluster-project }}-ns
     name: {{ .name }}
   syncPolicy:
     syncOptions:
