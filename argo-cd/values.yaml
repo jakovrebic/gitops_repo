@@ -2,6 +2,10 @@ cluster:
   projectName: "clusters"
   serverUrl: "https://kubernetes.default.svc"
 
+project:
+  projectName: "projects"
+  serverUrl: "https://kubernetes.default.svc"
+
 argo-cd:
   installCRDs: false
 #  global:
