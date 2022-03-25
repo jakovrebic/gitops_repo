@@ -1,6 +1,28 @@
-
 {{ .Values.projects }}
 
-## 
+{{ .Files.Get "files/project-config/{{ .name }}.yaml" }}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+spec:
+  project: {{ $.Values.argo-cd-info.project-project }}
+  source:
+    repoURL: {{ .projectConfigRepo }}
+    path: .
+    targetRevision: master
+  destination:
+    namespace: {{ $.Values.argo-cd-info.project-project }}-ns
+    name: {{ .name }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: true
 
 {{ end }}

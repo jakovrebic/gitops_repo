@@ -1,7 +1,7 @@
 
 argo-cd-info:
   cluster-project: "clusters"  # projekt na argocd-u u kojem su appovi koji definiraju cluster-e, mora biti isto kao values cluster.pojectName u argo-cd/values.yaml
-  project-project: ""  # projekt na argocd-u u kojem su appovi koji definiraju projekte (producte)
+  project-project: "projects"  # projekt na argocd-u u kojem su appovi koji definiraju projekte (producte)
   destination:
     namespace: ""
     cluster: ""
