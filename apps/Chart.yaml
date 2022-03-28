@@ -1,5 +1,0 @@
-# example Chart for every 3rd party app
-
-apiVersion: v2
-name: root
-version: 1.0.0

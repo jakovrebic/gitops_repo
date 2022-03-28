@@ -1,3 +1,11 @@
+cluster:
+  projectName: "clusters"
+  serverUrl: "https://kubernetes.default.svc"
+
+project:
+  projectName: "projects"
+  serverUrl: "https://kubernetes.default.svc"
+
 argo-cd:
   installCRDs: false
 #  global:
@@ -10,9 +18,6 @@ argo-cd:
       - --insecure
     config:
       repositories: |
-        - type: helm
-          name: stable
-          url: https://charts.helm.sh/stable
         - type: helm
           name: argo-cd
           url: https://argoproj.github.io/argo-helm

@@ -1,0 +1,26 @@
+
+argo-cd-info:
+  cluster-project: "clusters"  # projekt na argocd-u u kojem su appovi koji definiraju cluster-e, mora biti isto kao values cluster.pojectName u argo-cd/values.yaml
+  project-project: "projects"  # projekt na argocd-u u kojem su appovi koji definiraju projekte (producte)
+  destination:
+    namespace: ""
+    cluster: ""
+
+projects:
+  - name: ai-platform # da ostane isto ime
+    namespaces: 
+      - A
+      - B
+      # ...
+    clusters:
+      - C1
+      - C2
+      # ...
+    clusterResourcePerms:
+      # see specf of argos AppProject spec/clusterResourceWhitelist
+    projectConfigRepo: "" # npr git@bitbucket.org:microblink/mlp-project.git
+
+clusters:
+  - name: mb-baremetal
+    clusterConfigRepo: "" # npr ovaj koji smo napravili git@bitbucket.org:microblink/mlp-cluster.git
+

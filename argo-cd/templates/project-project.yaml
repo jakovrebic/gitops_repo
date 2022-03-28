@@ -1,0 +1,17 @@
+## TODO define project project ArgoCD CRD AppProject
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.project.projectName }}
+spec:
+  projectResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: {{ .Values.project.projectName }}-ns
+    server: {{ .Values.project.serverUrl }}
+  orphanedResources:
+    warn: false
+  sourceRepos:
+  - '*'
