@@ -9,13 +9,13 @@ kind: Application
 metadata:
   name: {{ .name }}
 spec:
-  project: {{ $.Values.argo-cd-info.project-project }}
+  project: {{ index $.Values "argo-cd-info" "project-project" }}
   source:
     repoURL: {{ .projectConfigRepo }}
     path: .
     targetRevision: master
   destination:
-    namespace: {{ $.Values.argo-cd-info.project-project }}-ns
+    namespace: {{ index $.Values "argo-cd-info" "project-project" }}-ns
     name: {{ .name }}
   syncPolicy:
     syncOptions:
