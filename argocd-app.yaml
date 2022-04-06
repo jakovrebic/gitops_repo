@@ -1,3 +1,5 @@
+##ovaj se fajl applyja na klaster
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: 'git@bitbucket.org:microblink/mlp-argo-cd.git'
-    path: argo-cd
+    path: argo-cd ## zato sto taj app synca stanje unutar argo-cd repozitorija
     targetRevision: master
   destination:
     namespace: argo-cd
@@ -35,3 +37,23 @@ spec:
     automated: {}
     syncOptions:
       - CreateNamespace=true
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeseal
+spec:
+  project: default
+  source:
+    repoURL: 'git@bitbucket.org:microblink/mlp-argo-cd.git'
+    path: kubeseal ##TODO
+    targetRevision: master
+  destination:
+    namespace: argo-cd
+    name: in-cluster
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true 

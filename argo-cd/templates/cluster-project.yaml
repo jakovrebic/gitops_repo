@@ -9,7 +9,7 @@ spec:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: {{ .Values.Cluster.projectName }}-ns
+  - namespace: {{ .Values.cluster.projectName }}-ns
     server: {{ .Values.cluster.serverUrl }}
   orphanedResources:
     warn: false

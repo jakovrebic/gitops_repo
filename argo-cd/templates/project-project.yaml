@@ -5,7 +5,7 @@ kind: AppProject
 metadata:
   name: {{ .Values.project.projectName }}
 spec:
-  projectResourceWhitelist:
+  clusterResourceWhitelist:
   - group: '*'
     kind: '*'
   destinations:

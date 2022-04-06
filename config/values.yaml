@@ -18,9 +18,9 @@ projects:
       # ...
     clusterResourcePerms:
       # see specf of argos AppProject spec/clusterResourceWhitelist
-    projectConfigRepo: "" # npr git@bitbucket.org:microblink/mlp-project.git
+    projectConfigRepo: 'git@bitbucket.org:microblink/mlp-project.git'
 
 clusters:
   - name: mb-baremetal
-    clusterConfigRepo: "" # npr ovaj koji smo napravili git@bitbucket.org:microblink/mlp-cluster.git
+    clusterConfigRepo: 'git@bitbucket.org:microblink/mlp-cluster.git'
 

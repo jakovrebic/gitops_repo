@@ -1,21 +1,20 @@
-{{ .Values.projects }}
+{{ range .Values.projects }}
 
-{{ .Files.Get "files/project-config/{{ .name }}.yaml" }}
+{{ $.Files.Get "files/project-config/{{ .name }}.yaml" }}
 
----
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .name }}
+  name: {{ .name | default "test-project"}}
 spec:
-  project: {{ $.Values.argo-cd-info.project-project }}
+  project: {{ index $.Values "argo-cd-info" "project-project" }}
   source:
     repoURL: {{ .projectConfigRepo }}
     path: .
     targetRevision: master
   destination:
-    namespace: {{ $.Values.argo-cd-info.project-project }}-ns
+    namespace: {{ index $.Values "argo-cd-info" "project-project" }}-ns
     name: {{ .name }}
   syncPolicy:
     syncOptions:
@@ -25,4 +24,4 @@ spec:
       allowEmpty: true
       selfHeal: true
 
-{{ end }}
+{{end}}
